@@ -12,10 +12,10 @@ jobs:
     steps:
     - name: GITHUB
       env:
-        GH: ${{github}}
+        GH: ${{toJson(github)}}
       run: |
         echo ${GH}
     - name: JB
       env:
-        JB: ${{job}}
+        JB: ${{toJson(job)}}
       run: echo ${JB}
