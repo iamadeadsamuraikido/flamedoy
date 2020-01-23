@@ -15,13 +15,14 @@ jobs:
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
-          const body = context.payload.event.comment.body
-          if (body.startsWith('//label:')) {
-            github.issues.addLabels({
-                owner: context.repository.owner.login,
-                repo: context.repository.name,
-                issue_number: context.issue.number,
-                labels: ['triage'],
-            })
-          }
+          // const body = context.payload.event.comment.body
+          // if (body.startsWith('//label:')) {
+          //   github.issues.addLabels({
+          //       owner: context.repository.owner.login,
+          //       repo: context.repository.name,
+          //       issue_number: context.issue.number,
+          //       labels: ['triage'],
+          //   })
+          // }
+          console.log(context)
           
