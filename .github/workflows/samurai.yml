@@ -1,0 +1,21 @@
+name: debug
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: GITHUB
+      env:
+        GH: ${{github}}
+      run: |
+        echo ${GH}
+    - name: JB
+      env:
+        JB: ${{job}}
+      run: echo ${JB}
