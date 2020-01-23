@@ -1,0 +1,27 @@
+name: flinkb
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: set labels
+      uses: actions/github-script@0.4.0
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          const body = context.payload.event.comment.body
+          if (body.startsWith('//label:')) {
+            github.issues.addLabels({
+                owner: context.repository.owner.login,
+                repo: context.repository.name,
+                issue_number: context.issue.number,
+                labels: ['triage'],
+            })
+          }
+          
