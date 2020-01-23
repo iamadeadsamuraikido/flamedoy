@@ -17,11 +17,12 @@ jobs:
         script: |
           const body = context.payload.comment.body
           if (body.startsWith('//label')) {
+            const labels = body.split(' ').slice(1)
             github.issues.addLabels({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              labels: ['triage'],
+              labels,
             })
           }
           
