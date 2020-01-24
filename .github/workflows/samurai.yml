@@ -1,8 +1,6 @@
 name: debug
 
-on:
-  issue_comment:
-    types: [created]
+on: [pull_request]
 
 jobs:
   build:
@@ -19,3 +17,8 @@ jobs:
       env:
         JB: ${{toJson(job)}}
       run: echo ${JB}
+    - name: fail shell
+      run: grep "hello" ./no_file.txt
+    - name: backup plan
+      if: failure()
+      run: echo "everything is OK"
